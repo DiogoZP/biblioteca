@@ -1,0 +1,16 @@
+.title {
+    font-family:
+      Greycliff CF,
+      var(--mantine-font-family);
+    font-weight: 900;
+}
+.link {
+  color: var(--mantine-color-blue-6);
+  font-family:
+    Greycliff CF,
+    var(--mantine-font-family);
+  text-decoration: none;
+}
+.link:hover {
+  text-decoration: underline;
+}

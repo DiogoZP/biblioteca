@@ -1,0 +1,30 @@
+.wrapper {
+    display: flex;
+    height: 100vh;
+    background-size: cover;
+    background-image: url(../../assets/fundo.webp);
+}
+.form {
+  border-right: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-7));
+  padding-top: 5rem;
+  min-width: 35%;
+  @media (max-width: 576px) {
+    width: 100%;
+  }
+}
+.title {
+  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+  font-family:
+    Greycliff CF,
+    var(--mantine-font-family);
+}
+.link {
+  color: var(--mantine-color-blue-6);
+  font-family:
+    Greycliff CF,
+    var(--mantine-font-family);
+  text-decoration: none;
+}
+.link:hover {
+  text-decoration: underline;
+}

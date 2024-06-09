@@ -1,20 +1,21 @@
-import { AppShell, Burger, Group } from "@mantine/core";
+import { AppShell, Burger, Group, Button } from "@mantine/core";
 import { NavLink } from "react-router-dom";
 import { useDisclosure } from "@mantine/hooks";
-import { FaHome, FaBook, FaArrowsAltH, FaUser } from "react-icons/fa";
+import { IconBook2, IconArrowsCross, IconUser, IconLogout } from '@tabler/icons-react';
 import AdminRouter from "./AdminRouter";
 import classes from './App.module.css';
-
+import { useNavigate } from "react-router-dom";
+import { logout } from "./services/auth";
 
 
 function App() {
+  const navigate = useNavigate();
   const [opened, { toggle }] = useDisclosure(true);
 
   const data = [
-    { link: '/admin/home', label: 'Home', icon: FaHome },
-    { link: '/admin/livros', label: 'Livros', icon: FaBook },
-    { link: '/admin/movimentos', label: 'Movimentos', icon: FaArrowsAltH },
-    { link: '/admin/usuarios', label: 'Usuarios', icon: FaUser },
+    { link: '/admin/livros', label: 'Livros', icon: IconBook2 },
+    { link: '/admin/movimentos', label: 'Movimentos', icon: IconArrowsCross },
+    { link: '/admin/usuarios', label: 'Usuarios', icon: IconUser },
   ];
 
   const links = data.map((item) => (
@@ -31,7 +32,7 @@ function App() {
 
   return (
     <AppShell
-    header={{height: 75}}
+    header={{height: 50}}
     navbar={{
       width: 300,
       breakpoint: 'sm',
@@ -42,11 +43,25 @@ function App() {
       <AppShell.Header>
         <Group h="100%" px="md">
           <Burger opened={opened} onClick={toggle} size="sm" />
-          <h1>Logo</h1>
         </Group>
       </AppShell.Header>
       <AppShell.Navbar p="md" className={classes.navbar}>
         {links}
+        <div className={classes.footer}>
+          <Button 
+            fullWidth 
+            variant="subtle" 
+            className={classes.link} 
+            leftSection={<IconLogout className={classes.linkIcon} />}
+            onClick={() => {
+              logout();
+              navigate("/login");
+            }}
+            >
+            Sair
+          </Button>
+        </div>
+        
       </AppShell.Navbar>
       <AppShell.Main>
         <AdminRouter />

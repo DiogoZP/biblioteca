@@ -33,7 +33,7 @@ function EditarLivro() {
     const mutation = useMutation({
         mutationFn: updateLivro,
         onSuccess: async () => {
-            notifications.show({ title: "Sucesso", message: "Usuário atualizado com sucesso", icon: <IconCheck/>, autoClose: 5000});
+            notifications.show({ title: "Sucesso", message: "Livro atualizado com sucesso", icon: <IconCheck/>, autoClose: 5000});
             await queryClient.invalidateQueries({ queryKey: ['listarLivros']});
             await queryClient.invalidateQueries({ queryKey: [`getLivro-${id}`]});
         },

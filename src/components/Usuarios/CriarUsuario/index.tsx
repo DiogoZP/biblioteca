@@ -5,7 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form";
 import { TextInput, Button } from '@mantine/core';
 import { useNavigate } from "react-router-dom";
-import { IconPlus } from "@tabler/icons-react";
+import { IconCheck, IconPlus } from "@tabler/icons-react";
+import { notifications } from "@mantine/notifications";
 
 const formSchema = z.object({
     id: z.number().optional(),
@@ -30,6 +31,11 @@ function CriarUsuario() {
             await queryClient.invalidateQueries({ queryKey: ['listarUsuarios'] });
             navigate("/admin/usuarios");
         },
+        onError: async () => {
+            notifications.show({ title: "Sucesso", message: "Usuário atualizado com sucesso", icon: <IconCheck/>, autoClose: 5000});
+            await queryClient.invalidateQueries({ queryKey: ['listarUsuarios']});
+        }   
+        
     });
 
     function onSubmit(usuario: formData) {

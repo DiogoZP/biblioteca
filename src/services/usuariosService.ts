@@ -25,14 +25,20 @@ async function getUsuario(id: number) {
 }
 
 async function createUsuario(usuario: Partial<Usuario>) {
-    const { data } = await axios.post("http://localhost:3000/usuarios/", usuario,
+    const { data, status} = await axios.post("http://localhost:3000/usuarios/", usuario,
         {
             headers: {
                 Authorization: `Bearer ${getToken()}`,
             }
         }
     );
-    return data;
+
+    if(status == 400){
+        return data
+    } else {
+
+        return data;
+    }
 }
 
 async function updateUsuario(usuario: Partial<Usuario>) {
